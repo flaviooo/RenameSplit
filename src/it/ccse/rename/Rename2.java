@@ -1,6 +1,5 @@
 package it.ccse.rename;
 import java.io.File;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.TreeMap;
 
@@ -9,8 +8,13 @@ import it.ccse.rename.utilities.FileExtensionFilter;
 public class Rename2 {
 
 	public static void main(String[] args) {
-		int couter = 12797;
-		String percorsoFileOriginali = "c://temp//nomeCartellaa//";
+		int numProtocolloDiPartenza = 12797;
+		String pathFileOriginali = "c://temp//nomeCartellaa//";
+		String percorsoFileExport = pathFileOriginali+ File.separator+"export";
+		renameFile(numProtocolloDiPartenza, pathFileOriginali,percorsoFileExport);
+	}
+
+	private static void renameFile(int couter, String percorsoFileOriginali,String percorsoFileExport) {
 		File files = new File(percorsoFileOriginali);
 		File[] lista = files.listFiles(new FileExtensionFilter("pdf"));
 		TreeMap<Integer, File> sortedHashMap = new TreeMap<>();
@@ -29,7 +33,7 @@ public class Rename2 {
 		  Integer key = keySetIterator.next();
 		  System.out.println("key: " + key + " value: " + sortedHashMap.get(key)+" protocollo: "+ couter);
 		  String nomeNuovoFile = String.valueOf(couter);
-		  String percorsonuovoFile = percorsoFileOriginali+File.separator+"export//"+nomeNuovoFile+".pdf";
+		  String percorsonuovoFile = percorsoFileExport+ File.separator+nomeNuovoFile+".pdf";
 		  sortedHashMap.get(key).renameTo(new File(percorsonuovoFile));
 		  couter++;
 		//	System.out.println("nome da cambiare " + mappa.get(key)+  " >> "+nomeNuovoFile);
